@@ -1,4 +1,4 @@
 package oncall.model;
 
-public class Member {
+public record Member(String name) {
 }
