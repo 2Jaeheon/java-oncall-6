@@ -21,6 +21,10 @@ public class WorkDay {
         return !dayOfWeek.isWeekend() && isPublicHoliday;
     }
 
+    public boolean isPublicHoliday() {
+        return isPublicHoliday;
+    }
+
     public String toStringFormat(String workerName) {
         StringBuilder sb = new StringBuilder();
         sb.append(month).append("월 ").append(day).append("일 ").append(dayOfWeek.getKoreanName());

@@ -1,6 +1,7 @@
 package oncall.controller;
 
 import java.util.List;
+import oncall.domain.DailyWorkLog;
 import oncall.domain.DayOfWeek;
 import oncall.domain.Employees;
 import oncall.domain.WorkMonth;
@@ -14,8 +15,8 @@ public class Controller {
         WorkMonth workMonth = getValidWorkMonth();
         Employees employees = getValidEmployees();
 
-        List<String> result = workMonth.generateSchedule(employees);
-        OutputView.printSchedule(result);
+        List<DailyWorkLog> dailyWorkLogs = workMonth.generateSchedule(employees);
+        OutputView.printSchedule(dailyWorkLogs);
     }
 
     private WorkMonth getValidWorkMonth() {

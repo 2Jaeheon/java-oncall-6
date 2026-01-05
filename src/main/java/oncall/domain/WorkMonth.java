@@ -19,8 +19,8 @@ public class WorkMonth {
         }
     }
 
-    public List<String> generateSchedule(Employees employees) {
-        List<String> scheduleResult = new ArrayList<>();
+    public List<DailyWorkLog> generateSchedule(Employees employees) {
+        List<DailyWorkLog> logs = new ArrayList<>(); // String -> DTO로 변경
         int maxDays = getMaxDays();
         DayOfWeek currentDayOfWeek = startDay;
         String previousWorker = "";
@@ -29,12 +29,18 @@ public class WorkMonth {
             WorkDay workDay = new WorkDay(month, day, currentDayOfWeek);
             String worker = employees.assignWorker(workDay.isHoliday(), previousWorker);
 
-            scheduleResult.add(workDay.toStringFormat(worker));
+            logs.add(new DailyWorkLog(
+                    month,
+                    day,
+                    currentDayOfWeek,
+                    workDay.isPublicHoliday(),
+                    worker
+            ));
 
             previousWorker = worker;
             currentDayOfWeek = currentDayOfWeek.next();
         }
-        return scheduleResult;
+        return logs;
     }
 
     private int getMaxDays() {
