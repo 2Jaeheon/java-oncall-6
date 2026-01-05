@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employees {
-    public static final String ERROR_WORKER_NOT_SAME = "[ERROR] 비상 근무자는 평일과 휴일 각각 1회씩 있어야 합니다.";
     private final Workers weekdayWorkers;
     private final Workers holidayWorkers;
 
@@ -15,9 +14,10 @@ public class Employees {
 
     public List<Work> createWorkTable(WorkDay workDay) {
         List<Work> table = new ArrayList<>();
-        int currentMonth = workDay.getMonth();
-        DayOfWeek currentDayOfWeek = workDay.getDayOfWeek();
+        int currentMonth = workDay.month();
+        DayOfWeek currentDayOfWeek = workDay.dayOfWeek();
         String prevWorker = "";
+
         extractWorkTable(workDay, currentMonth, currentDayOfWeek, prevWorker, table);
 
         return table;

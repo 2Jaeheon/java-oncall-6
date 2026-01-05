@@ -2,17 +2,12 @@ package oncall.model;
 
 import java.util.Arrays;
 
-public class WorkDay {
+public record WorkDay(int month, DayOfWeek dayOfWeek) {
     public static final String ERROR_INVALID_INPUT = "[ERROR] 잘못된 입력입니다.";
     public static final String ERROR_INVALID_MONTH = "[ERROR] 월을 잘못 입력하셨습니다. 다시 입력해주세요.";
 
-    private final int month;
-    private final DayOfWeek dayOfWeek;
-
-    public WorkDay(int month, DayOfWeek dayOfWeek) {
+    public WorkDay {
         validate(month, dayOfWeek);
-        this.month = month;
-        this.dayOfWeek = dayOfWeek;
     }
 
     private void validate(int month, DayOfWeek dayOfWeek) {
@@ -20,14 +15,6 @@ public class WorkDay {
             throw new IllegalArgumentException(ERROR_INVALID_MONTH);
         }
 
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
     }
 
     public int getLastDay() {
