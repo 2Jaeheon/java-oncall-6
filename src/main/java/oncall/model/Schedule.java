@@ -94,17 +94,21 @@ public class Schedule {
 
     private void extractHolidays(Month target, DayOfWeek dayOfWeek, int date, int month, List<Integer> holidays) {
         while (date <= target.getLastDate()) {
-            for (Holidays holiday : Holidays.values()) {
-                if (month == holiday.getMonth() && holiday.getDate() == date && dayOfWeek.isWeekday()) {
-                    holidays.add(date);
-                }
-            }
-            if (dayOfWeek.isWeekend(dayOfWeek)) {
-                holidays.add(date);
-            }
+            setHolidays(dayOfWeek, date, month, holidays);
             date++;
             String nextDayOfWeek = DayOfWeek.nextDay(dayOfWeek);
             dayOfWeek = DayOfWeek.of(nextDayOfWeek);
+        }
+    }
+
+    private void setHolidays(DayOfWeek dayOfWeek, int date, int month, List<Integer> holidays) {
+        for (Holidays holiday : Holidays.values()) {
+            if (month == holiday.getMonth() && holiday.getDate() == date && dayOfWeek.isWeekday()) {
+                holidays.add(date);
+            }
+        }
+        if (dayOfWeek.isWeekend(dayOfWeek)) {
+            holidays.add(date);
         }
     }
 

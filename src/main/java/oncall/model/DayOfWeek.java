@@ -57,13 +57,7 @@ public enum DayOfWeek {
     }
 
     public boolean isWeekday() {
-        for (DayOfWeek day : values()) {
-            if (!day.getName().equals("토") && !day.getName().equals("일")) {
-                return true;
-            }
-        }
-
-        return false;
+        return !name.equals("토") && !name.equals("일");
     }
 
     public boolean isWeekend(DayOfWeek dayOfWeek) {
