@@ -34,6 +34,7 @@ public class Employees {
             Work work = new Work(currentMonth, day, currentDayOfWeek.getName(), isPublicHoliday, nextWorker);
             table.add(work);
 
+            prevWorker = nextWorker;
             currentDayOfWeek = currentDayOfWeek.next();
         }
     }
