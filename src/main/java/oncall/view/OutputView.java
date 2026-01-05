@@ -31,13 +31,16 @@ public class OutputView {
     }
 
     private void printTable(Map<Integer, String> history, int month, int date, DayOfWeek currentDayOfWeek) {
+        String holidaySuffix = "";
+
         for (Holidays holidays : Holidays.values()) {
             if (holidays.getMonth() == month && holidays.getDate() == date) {
-                System.out.println(
-                        month + "월 " + date + "일 " + currentDayOfWeek.getName() + "(휴일) " + history.get(date));
+                holidaySuffix = "(휴일)";
+                break;
             }
         }
 
-        System.out.println(month + "월 " + date + "일 " + currentDayOfWeek.getName() + " " + history.get(date));
+        System.out.println(
+                month + "월 " + date + "일 " + currentDayOfWeek.getName() + holidaySuffix + " " + history.get(date));
     }
 }
